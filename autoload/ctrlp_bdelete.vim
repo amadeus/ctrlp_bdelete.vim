@@ -41,7 +41,6 @@ endfunction
 
 function! s:DeleteMarkedBuffers()
   " get the line number to preserve position
-  let currln = line('.')
   let lastln = line('$')
 
   " list all marked buffers
@@ -66,7 +65,7 @@ function! s:DeleteMarkedBuffers()
   silent! call ctrlp#clearmarkedlist()
 
   " preserve line selection
-  if line('.') == currln && line('$') < lastln
-    exec "normal \<up>"
+  if line('$') < lastln
+    exec "normal \<up>\<up>"
   endif
 endfunction
